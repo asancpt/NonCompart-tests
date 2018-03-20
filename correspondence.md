@@ -15,3 +15,5 @@ There was no discrepancy ~
   로하고,
 
 Qualified 라는 단어도 어딘가에 들어가면 좋겠네요.
+
+WinNonlin version 6.3 and 7.0.
