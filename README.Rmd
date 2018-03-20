@@ -121,13 +121,17 @@ Rres8 = tblNCA(Indometh, "Subject", "time", "conc", dose=25, down="Log",
 Equal(Wres8, Rres8)
 ```
 
+\pagebreak
+
 # Conclusion 
 
 *There is no discrepancy* between results from NonCompart and WinNonlin. We also performed multiple analyses with the real clinical trial datasets and have found no differences (data not shown: confidential).  Noncompartmental analysis performed by the open-source R package, NonCompart can be **qualified and validated** enough to acquire the identical results of the commercial software, WinNonlin.
 
 *Please report issues regarding validation of the R package to <https://github.com/asancpt/NonCompart-tests/issues>.*
 
-<!--**Affiliation**:  
+------
+
+**Affiliation**:  
 Sungpil Han  
 M.D/Ph.D, Resident  
 Department of Clinical Pharmacology and Therapeutics,  
@@ -135,7 +139,6 @@ Asan Medical Center, University of Ulsan,
 Seoul 05505, Republic of Korea  
 E-mail: shan@acp.kr  
 URL: www.github.com/shanmdphd
--->
 
 \pagebreak
 
