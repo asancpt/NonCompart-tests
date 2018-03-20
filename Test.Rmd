@@ -1,29 +1,38 @@
 ---
 title: Validation of Noncompartmental Analysis Performed by NonCompart R package 
-author: Kyun-Seop Bae
+author: Sungpil Han <shan@acp.kr>
 date: "`r Sys.Date()`"
+bibliography: ['Test.bib']
 output:
   bookdown::pdf_document2: default
   pdf_document: default
   html_document: default
+header-includes:
+  - \usepackage{textcomp}
 ---
+
+```{r setup, include = FALSE}
+#knitr::write_bib(file='Test.bib')
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
 
 
 ------
 
 # Introduction
 
-`NonCompart` package can conduct a noncompartmental analysis as closely as possible to the most widely used commercial software for pharmacokinetic analysis, i.e. [Phoenix(R) WinNon-lin(R)](https://www.certara.com/software/pkpd-modeling-and-simulation/phoenix-winnonlin/).
-This document provides validation of noncompartmental analysis performed by noncompart r package as compared to the results from the commercial software.
+NonCompart R package [@R-NonCompart] can conduct a noncompartmental analysis as closely as possible to the most widely used commercial software for pharmacokinetic analysis, i.e. [Phoenix^®^   WinNonlin^®^](https://www.certara.com/software/pkpd-modeling-and-simulation/phoenix-winnonlin/).
+This document provides validation of noncompartmental analysis performed by NonCompart R package as compared to the results from the commercial software.
 
 # Results
 
-This script will be stopped if there is any difference between results from NonCompart and WinNonLin printing `Test Failed!`.
-Eight comparison tests were performed using `Theoph` and `Indometh` default datasets.
-
+This script will be stopped if there is any difference between results from NonCompart and WinNonlin printing `Test Failed!`.
 
 ```{r}
-library(NonCompart)
+# install.packages("NonCompart", repos="http://pmx.amc.seoul.kr")
+library(NonCompart) 
 RptCfg = read.csv("RptCfg.csv", as.is=TRUE)
 
 Equal = function(Wres, Rres, Tol=0.001)
@@ -33,7 +42,7 @@ Equal = function(Wres, Rres, Tol=0.001)
   rownames(RptCfg) = RptCfg[,"PPTESTCD"]
   colnames(Rres) = c(ColName0[1], RptCfg[ColName0[-1],"WNL"])
   Inter = intersect(colnames(Wres), colnames(Rres))
-
+  
   IsSame = TRUE
   for (i in 1:nrow(Wres)) {
     for (j in Inter) {
@@ -50,7 +59,22 @@ Equal = function(Wres, Rres, Tol=0.001)
   }
   return(IsSame)
 }
+```
 
+Eight comparison tests were performed using `Theoph` and `Indometh` default datasets. Detailed side-by-side comparison is in Appendix [#sidebyside].
+
+No.|Dataset|Down|Route
+---|---|---|---|---
+1|Theoph (n=12)|Linear|Extravascular
+2|Theoph (n=12)|Log|Extravascular
+3|Indometh (n=6)|Linear|IV Bolus
+4|Indometh (n=6)|Log|IV Bolus
+5|Indometh (n=6)|Linear|IV Infusion (0.25hr)
+6|Indometh (n=6)|Log|IV Infusion (0.25hr)
+7|Indometh (n=6)|Linear|Extravascular
+8|Indometh (n=6)|Log|Extravascular
+
+```{r}
 Theoph[,"Subject"] = as.numeric(as.character(Theoph[,"Subject"]))
 Indometh[,"Subject"] = as.numeric(as.character(Indometh[,"Subject"]))
 
@@ -59,58 +83,81 @@ Rres = tblNCA(Theoph, "Subject", "Time", "conc", dose=320, concUnit="mg/L")
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Theoph_Log.csv")
-Rres = tblNCA(Theoph, "Subject", "Time", "conc", dose=320, down="Log", concUnit="mg/L")
+Rres = tblNCA(Theoph, "Subject", "Time", "conc", dose=320, down="Log", 
+              concUnit="mg/L")
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Linear.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Bolus", concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Bolus", 
+              concUnit="mg/L", R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Log.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Bolus", down="Log", concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Bolus", 
+              down="Log", concUnit="mg/L", R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Linear_Infusion.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Infusion", dur=0.25, concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Infusion", 
+              dur=0.25, concUnit="mg/L", R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Log_Infusion.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Infusion", dur=0.25, down="Log", concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, adm="Infusion", 
+              dur=0.25, down="Log", concUnit="mg/L", R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Linear_Wrong_Extravascular.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, concUnit="mg/L", 
+              R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 
 Wres = read.csv("Final_Parameters_Pivoted_Indometh_Log_Wrong_Extravascular.csv")
-Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, down="Log", concUnit="mg/L", R2ADJ=0.8)
+Rres = tblNCA(Indometh, "Subject", "time", "conc", dose=25, down="Log", 
+              concUnit="mg/L", R2ADJ=0.8)
 if (!Equal(Wres, Rres)) stop("Test Failed!")
 ```
 
 # Conclusion 
 
-Nothing happeded and it indicates that **there is no discrepancy** between results from NonCompart and WinNonLin 
+Nothing happened and it indicates that **there is no discrepancy**. Noncompartmental analyses generated by NonCompart R package are qualified and validated.
 
 \pagebreak
 
 # (APPENDIX) Appendix {-}
 
-# Side by side value comparison
+# Side-by-side comparison of results {#sidebyside}
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+table_wres_rres <- function(wres, rres){
+  wres %>% 
+    gather(WNL, WinNonlin, -Subject) %>% 
+    left_join(RptCfg %>% select(PPTESTCD, WNL), by = "WNL") %>% 
+    left_join(rres %>% as.data.frame() %>% gather(PPTESTCD, NonCompart, -Subject),
+              by = c("Subject", "PPTESTCD")) %>% 
+    select(Subject, PPTESTCD, WNL, NonCompart, WinNonlin) %>% 
+    filter(!is.na(WinNonlin) & !is.na(NonCompart)) %>% 
+    knitr::kable(longtable = TRUE, booktabs = TRUE, format = "latex", 
+                 caption = "Longtable") %>% 
+    add_header_above(c(" ", "Parameters" = 2, "Values" = 2)) %>% 
+    kable_styling(latex_options = c("repeat_header"))
+    
+}
+```
+
+## Test 1: Theoph (n=12), Linear, Extravascular
 
 ```{r}
 Wres = read.csv("Final_Parameters_Pivoted_Theoph_Log.csv")
 Rres = tblNCA(Theoph, "Subject", "Time", "conc", dose=320, down="Log", concUnit="mg/L")
 
-library(dplyr)
-library(tidyr)
-
-Wres %>% 
-  gather(WNL, WinNonLin, -Subject) %>% 
-  right_join(RptCfg %>% select(PPTESTCD, WNL)) %>% 
-  left_join(Rres %>% as.data.frame() %>% gather(PPTESTCD, NonCompart, -Subject)) %>% 
-  select(Subject, PPTESTCD, WNL, WinNonLin, NonCompart) %>% 
-  knitr::kable(longtable = TRUE, booktabs = TRUE)
+table_wres_rres(Wres, Rres)
 ```
+
+\pagebreak
 
 # Session Information
 
@@ -118,4 +165,6 @@ Wres %>%
 devtools::session_info()
 ```
 
+\pagebreak
 
+# References {-}
