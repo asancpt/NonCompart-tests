@@ -8,3 +8,4 @@ NonCompart 패키지의 계산값을 상용소프트웨어의 계산값과 비�
 make pdf
 ```
 
+![](cover.png)
