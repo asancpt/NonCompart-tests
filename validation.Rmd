@@ -2,7 +2,7 @@
 title: Validation of Noncompartmental Analysis Performed by NonCompart R package 
 author: Sungpil Han <shan@acp.kr>
 date: "`r Sys.Date()`"
-bibliography: ['manual.bib']
+bibliography: ['manual.bib', 'packages.bib']
 output:
   bookdown::pdf_document2: default
   pdf_document: default
@@ -23,14 +23,14 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 # Introduction
 
 NonCompart R package [@R-NonCompart; @Kim_2018] can conduct a noncompartmental analysis as similar as possible to the most widely used commercial software for pharmacokinetic analysis, i.e. [Phoenix^®^   WinNonlin^®^](https://www.certara.com/software/pkpd-modeling-and-simulation/phoenix-winnonlin/) [@wnl].
-This document provides validation of noncompartmental analysis performed by NonCompart R package version 0.4.1 as compared to the results from the commercial software, WinNonlin^®^ version 6.3 and 7.0.
+This document provides validation of noncompartmental analysis performed by NonCompart R package version `r packageVersion("NonCompart")` as compared to the results from the commercial software, WinNonlin^®^ version 6.3 and 7.0.
 
 # Results
 
 A function, `Equal()` will return `TRUE` if there is no difference between results from NonCompart and WinNonlin.
 
 ```{r}
-# install.packages("NonCompart", repos="http://pmx.amc.seoul.kr")
+# install.packages("NonCompart", repos="http://r.acr.kr")
 library(NonCompart)
 RptCfg = read.csv("RptCfg.csv", as.is=TRUE)
 
@@ -159,14 +159,14 @@ table_wres_rres <- function(wres, rres, Caption){
     select(Subject, PPTESTCD, WNL, NonCompart, WinNonlin) %>% 
     mutate(NonCompart = as.numeric(NonCompart),
            WinNonlin = as.numeric(WinNonlin)) %>% 
-    mutate(Difference = ifelse(NonCompart - WinNonlin < 0.00001, 
-                               yes = 0, no = 'Larger than 0.00001')) %>% 
+    mutate(Difference = ifelse((NonCompart - WinNonlin) / WinNonlin < 0.001, 
+                               yes = 0, no = 'Larger than tol.')) %>% 
+    mutate(Difference = ifelse(is.na(Difference), 0, Difference)) %>% 
     filter(!is.na(WinNonlin) & !is.na(NonCompart)) %>% 
-    knitr::kable(longtable = TRUE, booktabs = TRUE, format = "latex", 
+    knitr::kable(longtable = TRUE, booktabs = TRUE, # format = "latex", 
                  caption = Caption) %>% 
     add_header_above(c(" ", "Pharmacokinetic Parameters" = 2, "Values" = 2, " ")) %>% 
     kable_styling(latex_options = c("repeat_header"))
-  
 }
 ```
 
@@ -233,3 +233,8 @@ devtools::session_info()
 ```
 
 # References {-}
+
+```{r include = FALSE}
+library(NonCompart)
+knitr::write_bib(file = 'packages.bib')
+```
