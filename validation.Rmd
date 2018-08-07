@@ -3,6 +3,7 @@ title: Validation of Noncompartmental Analysis Performed by NonCompart R package
 author: Sungpil Han <shan@acp.kr>
 date: "`r Sys.Date()`"
 bibliography: ['manual.bib', 'packages.bib']
+always_allow_html: yes
 output:
   bookdown::pdf_document2: default
   pdf_document: default

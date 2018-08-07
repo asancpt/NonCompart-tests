@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>error-noncompart.utf8.md</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div id="noncompart--" class="section level1">
+<h1>NonCompart 에러 관련</h1>
+<p><code>key</code>에 문자가 포함되어 있으면 에러가 출력됨.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">Theoph2 &lt;-<span class="st"> </span>Theoph</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">Theoph2<span class="op">$</span>Subject &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'Subjid'</span>, Theoph<span class="op">$</span>Subject) <span class="co"># 강제로 문자 포함하게 함.</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">str</span>(Theoph2)</a></code></pre></div>
+<pre><code>## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   132 obs. of  5 variables:
+##  $ Subject: chr  &quot;Subjid1&quot; &quot;Subjid1&quot; &quot;Subjid1&quot; &quot;Subjid1&quot; ...
+##  $ Wt     : num  79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 79.6 ...
+##  $ Dose   : num  4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 4.02 ...
+##  $ Time   : num  0 0.25 0.57 1.12 2.02 ...
+##  $ conc   : num  0.74 2.84 6.57 10.5 9.66 8.58 8.36 7.47 6.89 5.94 ...
+##  - attr(*, &quot;formula&quot;)=Class 'formula'  language conc ~ Time | Subject
+##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_EmptyEnv&gt; 
+##  - attr(*, &quot;labels&quot;)=List of 2
+##   ..$ x: chr &quot;Time since drug administration&quot;
+##   ..$ y: chr &quot;Theophylline concentration in serum&quot;
+##  - attr(*, &quot;units&quot;)=List of 2
+##   ..$ x: chr &quot;(hr)&quot;
+##   ..$ y: chr &quot;(mg/l)&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(NonCompart)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">tblNCA</span>(Theoph2, <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</a></code></pre></div>
+<pre><code>##     Subject       b0  CMAX      CMAXD TMAX TLAG CLST     CLSTP  TLST
+## 1   Subjid1 2.368785 10.50 0.03281250 1.12    0 3.28 3.2801465 24.37
+## 2   Subjid2 2.411237  8.33 0.02603125 1.92    0 0.90 0.8886398 24.30
+## 3   Subjid3 2.529712  8.20 0.02562500 1.02    0 1.05 1.0550967 24.17
+## 4   Subjid4 2.592755  8.60 0.02687500 1.07    0 1.15 1.1564216 24.65
+## 5   Subjid5 2.551092 11.40 0.03562500 1.00    0 1.57 1.5556951 24.35
+## 6   Subjid6 2.033404  6.44 0.02012500 1.15    0 0.92 0.9412712 23.85
+## 7   Subjid7 2.288550  7.09 0.02215625 3.48    0 1.15 1.1607192 24.22
+## 8   Subjid8 2.170403  7.56 0.02362500 2.02    0 1.25 1.2285268 24.12
+## 9   Subjid9 2.124648  9.03 0.02821875 0.63    0 1.12 1.1164831 24.43
+## 10 Subjid10 2.657705 10.21 0.03190625 3.55    0 2.42 2.4136923 23.70
+## 11 Subjid11 2.147594  8.00 0.02500000 0.98    0 0.86 0.8598066 24.08
+## 12 Subjid12 2.824493  9.75 0.03046875 3.52    0 1.17 1.1755390 24.15
+##       LAMZHL       LAMZ LAMZLL LAMZUL LAMZNPT     CORRXY        R2
+## 1  14.304378 0.04845700   9.05  24.37       3 -0.9999999 0.9999997
+## 2   6.659342 0.10408644   7.03  24.30       4 -0.9985967 0.9971954
+## 3   6.766087 0.10244431   9.00  24.17       3 -0.9996624 0.9993250
+## 4   6.981247 0.09928702   9.02  24.65       3 -0.9994619 0.9989241
+## 5   8.002264 0.08661888   7.02  24.35       4 -0.9993234 0.9986472
+## 6   7.894998 0.08779574   2.03  23.85       7 -0.9991203 0.9982413
+## 7   7.846668 0.08833650   6.98  24.22       4 -0.9993349 0.9986702
+## 8   8.510038 0.08145054   3.53  24.12       6 -0.9954961 0.9910124
+## 9   8.405999 0.08245863   8.80  24.43       3 -0.9997218 0.9994437
+## 10  9.246916 0.07495982   9.38  23.70       3 -0.9997543 0.9995087
+## 11  7.261237 0.09545856   9.03  24.08       3 -0.9999991 0.9999983
+## 12  6.286508 0.11025949   9.03  24.15       3 -0.9996984 0.9993968
+##        R2ADJ    AUCLST    AUCALL    AUCIFO   AUCIFOD    AUCIFP   AUCIFPD
+## 1  0.9999995 148.92305 148.92305 216.61193 0.6769123 216.61496 0.6769217
+## 2  0.9957931  91.52680  91.52680 100.17346 0.3130421 100.06432 0.3127010
+## 3  0.9986499  99.28650  99.28650 109.53597 0.3422999 109.58572 0.3424554
+## 4  0.9978483 106.79630 106.79630 118.37888 0.3699340 118.44356 0.3701361
+## 5  0.9979708 121.29440 121.29440 139.41978 0.4356868 139.25463 0.4351707
+## 6  0.9978896  73.77555  73.77555  84.25442 0.2632951  84.49670 0.2640522
+## 7  0.9980053  90.75340  90.75340 103.77180 0.3242869 103.89315 0.3246661
+## 8  0.9887655  88.55995  88.55995 103.90669 0.3247084 103.64305 0.3238845
+## 9  0.9988873  86.32615  86.32615  99.90872 0.3122147  99.86607 0.3120815
+## 10 0.9990174 138.36810 138.36810 170.65206 0.5332877 170.56791 0.5330247
+## 11 0.9999965  80.09360  80.09360  89.10274 0.2784461  89.10072 0.2784397
+## 12 0.9987936 119.97750 119.97750 130.58883 0.4080901 130.63907 0.4082471
+##       AUCPEO    AUCPEP   AUMCLST   AUMCIFO   AUMCIFP  AUMCPEO  AUMCPEP
+## 1  31.248917 31.249876 1459.0711 4505.5348 4505.6709 67.61603 67.61701
+## 2   8.631687  8.532030  706.5866  999.7723  996.0716 29.32525 29.06267
+## 3   9.357173  9.398325  803.1859 1150.9648 1152.6529 30.21629 30.31850
+## 4   9.784331  9.833594  901.0842 1303.2524 1305.4981 30.85881 30.97775
+## 5  13.000579 12.897403 1017.1143 1667.7216 1661.7937 39.01174 38.79419
+## 6  12.437174 12.688246  609.1524  978.4285  986.9665 37.74176 38.28034
+## 7  12.545221 12.647366  782.4199 1245.0984 1249.4111 37.16000 37.37691
+## 8  14.769730 14.552931  739.5346 1298.1158 1288.5201 43.03015 42.60589
+## 9  13.594978 13.558076  705.2296 1201.7715 1200.2124 41.31750 41.24126
+## 10 18.918002 18.878001 1278.1800 2473.9934 2470.8765 48.33535 48.27018
+## 11 10.110962 10.108918  617.2422  928.5600  928.4900 33.52694 33.52193
+## 12  8.125757  8.161087  977.8807 1330.3840 1332.0528 26.49636 26.58844
+##        VZFO     VZFP     CLFO     CLFP MRTEVLST  MRTEVIFO  MRTEVIFP
+## 1  30.48675 30.48632 1.477296 1.477276 9.797483 20.800031 20.800368
+## 2  30.69044 30.72392 3.194459 3.197943 7.719996  9.980411  9.954313
+## 3  28.51710 28.50415 2.921415 2.920088 8.089578 10.507642 10.518276
+## 4  27.22596 27.21110 2.703185 2.701709 8.437410 11.009163 11.022112
+## 5  26.49799 26.52942 2.295227 2.297949 8.385501 11.961873 11.933490
+## 6  43.25973 43.13569 3.798020 3.787130 8.256833 11.612785 11.680533
+## 7  34.90844 34.86767 3.083689 3.080088 8.621383 11.998427 12.025924
+## 8  37.81051 37.90669 3.079686 3.087520 8.350666 12.493092 12.432287
+## 9  38.84279 38.85938 3.202924 3.204292 8.169363 12.028695 12.018220
+## 10 25.01554 25.02788 1.875160 1.876086 9.237534 14.497296 14.486174
+## 11 37.62219 37.62304 3.591360 3.591441 7.706511 10.421227 10.420679
+## 12 22.22429 22.21575 2.450439 2.449497 8.150534 10.187579 10.196436</code></pre>
+</div>
+<div id="-" class="section level1">
+<h1>디앤디파마텍의 에러</h1>
+<p><code>read_csv</code> 로 파일을 읽어서 <code>tibble</code> 형태의 자료 때문에 (data.frame의 변형) 생긴 것일 수 있음.</p>
+<p><a href="https://groups.google.com/a/pagk.or.kr/forum/?utm_medium=email&amp;utm_source=footer#!msg/list/VGy3lhWig7o/eaATIkuyBgAJ" class="uri">https://groups.google.com/a/pagk.or.kr/forum/?utm_medium=email&amp;utm_source=footer#!msg/list/VGy3lhWig7o/eaATIkuyBgAJ</a></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">tblNCA</span>(<span class="kw">as_tibble</span>(Theoph), <span class="dt">key=</span><span class="st">&quot;Subject&quot;</span>, <span class="dt">dose=</span><span class="dv">320</span>, <span class="dt">concUnit=</span><span class="st">&quot;mg/L&quot;</span>)</a></code></pre></div>
+<pre><code>## Error in sNCA(tData[, colTime], tData[, colConc], dose = dose[i], adm = adm, : Check input types!</code></pre>
+</div>
+<div id="-" class="section level1">
+<h1>사용 버전</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">session_info</span>(<span class="kw">c</span>(<span class="st">'NonCompart'</span>, <span class="st">'ncar'</span>))</a></code></pre></div>
+<pre><code>## Session info -------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                       
+##  version  R version 3.5.1 (2018-07-02)
+##  system   x86_64, mingw32             
+##  ui       RTerm                       
+##  language (EN)                        
+##  collate  Korean_Korea.949            
+##  tz       Asia/Seoul                  
+##  date     2018-07-11</code></pre>
+<pre><code>## Packages -----------------------------------------------------------------</code></pre>
+<pre><code>##  package     * version date       source        
+##  graphics    * 3.5.1   2018-07-02 local         
+##  grDevices   * 3.5.1   2018-07-02 local         
+##  methods     * 3.5.1   2018-07-02 local         
+##  ncar          0.4.1   2018-07-10 CRAN (R 3.5.0)
+##  NonCompart  * 0.4.4   2018-07-10 CRAN (R 3.5.0)
+##  R.methodsS3   1.7.1   2016-02-16 CRAN (R 3.5.0)
+##  R.oo          1.22.0  2018-04-22 CRAN (R 3.5.0)
+##  rtf           0.4-13  2018-05-17 CRAN (R 3.5.0)
+##  stats       * 3.5.1   2018-07-02 local         
+##  utils       * 3.5.1   2018-07-02 local</code></pre>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
